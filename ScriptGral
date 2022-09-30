@@ -1,0 +1,17 @@
+
+
+#procedure  Cotizacion_ListCotizacion
+
+drop procedure if exists Cotizacion_ListCotizacion;
+
+Delimiter $$
+create procedure Cotizacion_ListCotizacion()
+begin
+
+select Coti.CotizacionId, Cli.Nombre, Coti.SubTotal, Coti.IVA, Coti.Total, Coti.factura, Coti.pagado, cast(Coti.Fecha as date) Fecha
+from tblcotizacion Coti inner join tblusuarios Cli on Cli.UsuarioId = Coti.ClienteId
+order by Coti.CotizacionId desc
+;
+
+end;
+$$
